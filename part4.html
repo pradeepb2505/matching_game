@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<meta charset="utf-8" />
+
+		<title>Matching game</title>
+
+		<style>
+
+			img {
+
+			position: absolute;
+
+			}
+
+			#leftSide{
+
+			position: absolute;
+
+			width: 500px;
+
+			height: 500px;
+
+			}
+
+			#rightSide{
+
+			position: absolute;
+
+			left: 500px;
+
+			width: 500px;
+
+			height: 500px;
+
+			border-left:1px solid black;
+
+			}
+
+		</style>
+
+		<script>
+
+			var numberOfFaces = 5;
+
+			window.onload = function generateFaces() {
+				var leftSide = document.getElementById("leftSide");
+
+				
+
+				for (var i=0; i<numberOfFaces; i++ ) {
+
+					var ran_value1 = Math.random() * 400;
+					
+
+					ran_value1 = Math.floor(ran_value1);
+					console.log(ran_value1);
+					var ran_value2 = Math.random() * 400;
+
+					ran_value2 = Math.floor(ran_value2);
+					console.log(ran_value2);
+					var img = document.createElement("img");
+
+					img.src="http://home.cse.ust.hk/~rossiter/mooc/matching_game/smile.png";
+
+					img.style.top=ran_value1 + "px";
+
+					img.style.left=ran_value2 + "px";
+
+					leftSide.appendChild(img);
+
+				}
+				var leftSide = document.getElementById("leftSide");
+				var theLeftSide =
+    				document.getElementById("leftSide")
+				var theRightSide =document.getElementById("rightSide");
+				
+				leftSideImages = theLeftSide.cloneNode(true);
+				leftSideImages.removeChild(leftSideImages.lastChild);
+				
+				var theBody =document.getElementsByTagName("body")[0];
+				
+				document.getElementById("rightSide").appendChild(leftSideImages)
+
+				theLeftSide.lastChild.onclick=function nextLevel(event){
+
+			        event.stopPropagation();
+
+			        numberOfFaces += 5;
+			       /* var leftSide = document.getElementById("leftSide");
+			          while(leftSide.childNodes[0]){
+			        	leftSide.removeChild(leftSide.childNodes[0]);
+					}*/
+					/*var theNode=document.getElementsByTagName(theBody)
+					while(thenode.firstChild)
+						theNode.removeChild(theNode)*/
+			        generateFaces();
+			      
+				};
+
+				theBody.onclick = function gameOver() {
+
+				    alert("Game Over!");
+
+
+
+				    theBody.onclick = null;
+
+				    theLeftSide.lastChild.onclick = null;
+
+
+				}; 
+
+			}
+
+		</script>
+
+	</head>
+
+	<body>
+
+		<h1> Matching Game: </h1>
+
+		Click on the extra smiling face on the left:
+
+		<br>
+
+		<br>
+
+		<br>
+
+		<div id="leftSide"></div>
+
+		<div id="rightSide"></div>
+
+	</body>
+
+</html>
